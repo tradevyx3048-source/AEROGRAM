@@ -15,7 +15,11 @@ jobs:
           distribution: temurin
           java-version: 17
       - run: chmod +x gradlew && ./gradlew :TMessagesProj_App:assembleAfatDebug -Pandroid.injected.build.abi=arm64-v8a --no-daemon
+      - name: Find APK
+        if: always()
+        run: find . $HOME /tmp -name "*.apk" 2>/dev/null | head -20
       - uses: actions/upload-artifact@v4
         with:
           name: aerogram-apk
-          path: TMessagesProj_App/build/outputs/apk/**/*.apk
+          path: "**/*.apk"
+          if-no-files-found: error
