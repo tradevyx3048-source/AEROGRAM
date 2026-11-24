@@ -188,4 +188,12 @@ public class GlassUi {
         } catch (Throwable ignore) {
         }
     }
+
+    public static void styleTabs(android.view.View v) {
+        try {
+            v.setBackground(glass(26));
+            v.setElevation(dp(6));
+        } catch (Throwable ignore) {
+        }
+    }
 }
