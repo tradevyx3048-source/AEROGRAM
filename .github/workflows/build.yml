@@ -13,10 +13,11 @@ jobs:
       - name: Add swap
         run: |
           sudo swapoff -a
-          sudo fallocate -l 12G /swapfile
-          sudo chmod 600 /swapfile
-          sudo mkswap /swapfile
-          sudo swapon /swapfile
+          sudo rm -f /mnt/swapfile
+          sudo fallocate -l 10G /mnt/swapfile
+          sudo chmod 600 /mnt/swapfile
+          sudo mkswap /mnt/swapfile
+          sudo swapon /mnt/swapfile
           free -h
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
