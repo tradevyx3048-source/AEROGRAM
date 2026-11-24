@@ -2478,8 +2478,8 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             messageNameTop = dp(32);
             timeTop = dp(13);
             errorTop = dp(42.33f);
-            pinTop = dp(43);
-            countTop = dp(42.33f);
+            pinTop = dp(49);
+            countTop = dp(48.33f);
             checkDrawTop = dp(13);
             messageWidth = getMeasuredWidth() - dp(messagePaddingStart + 21);
 
@@ -2501,8 +2501,8 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             messageNameTop = dp(31);
             timeTop = dp(16);
             errorTop = dp(38);
-            pinTop = dp(39);
-            countTop = isTopic ? dp(35f) : dp(38f);
+            pinTop = dp(46);
+            countTop = isTopic ? dp(42f) : dp(45f);
             checkDrawTop = dp(17);
             messageWidth = getMeasuredWidth() - dp(messagePaddingStart + 20 - (LocaleController.isRTL ? 0 : 12));
 
