@@ -5435,9 +5435,9 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                         canvas.drawPath(counterPath, counterPaintOutline);
                     }
                 } else {
-                    canvas.drawRoundRect(rect, dp(11.5f), dp(11.5f), paint);
+                    canvas.drawRoundRect(rect, dp(15f), dp(15f), paint);
                     if (outline) {
-                        canvas.drawRoundRect(rect, dp(11.5f), dp(11.5f), counterPaintOutline);
+                        canvas.drawRoundRect(rect, dp(15f), dp(15f), counterPaintOutline);
                     }
                 }
                 if (countAnimationStableLayout != null) {
