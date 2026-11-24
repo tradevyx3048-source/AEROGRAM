@@ -171,8 +171,8 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     public ShareDialogCell.RepostStoryDrawable repostStoryDrawable;
     public int avatarStart = 11;
     public int messagePaddingStart = 84;
-    public int heightDefault = 70;
-    public int heightThreeLines = 76;
+    public int heightDefault = 84;
+    public int heightThreeLines = 90;
     public int addHeightForTags = 3;
     public int addForumHeightForTags = 11;
     public TLRPC.TL_forumTopic forumTopic;
@@ -2474,7 +2474,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         int avatarTop;
         int thumbLeft;
         if (useForceThreeLines || SharedConfig.useThreeLinesLayout) {
-            avatarTop = dp(9);
+            avatarTop = dp(10);
             messageNameTop = dp(32);
             timeTop = dp(13);
             errorTop = dp(42.33f);
@@ -2735,7 +2735,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             buttonTop -= dp(isForumCell() ? 10 : 12);
         }
         if (isForumCell()) {
-            messageTop = dp(useForceThreeLines || SharedConfig.useThreeLinesLayout ? 34 : 39);
+            messageTop = dp(useForceThreeLines || SharedConfig.useThreeLinesLayout ? 40 : 46);
             for (int i = 0; i < thumbImage.length; ++i) {
                 thumbImage[i].setImageY(buttonTop);
             }
@@ -2751,7 +2751,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             } catch (Exception e) {
                 FileLog.e(e);
             }
-            messageTop = dp(32 + 19);
+            messageTop = dp(38 + 22);
             int yoff = nameIsEllipsized && isTopic ? dp(20) : 0;
             for (int i = 0; i < thumbImage.length; ++i) {
                 thumbImage[i].setImageY(avatarTop + yoff + dp(40));
@@ -2759,13 +2759,13 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         } else {
             messageNameLayout = null;
             if (useForceThreeLines || SharedConfig.useThreeLinesLayout) {
-                messageTop = dp(32);
+                messageTop = dp(38);
                 int yoff = nameIsEllipsized && isTopic ? dp(20) : 0;
                 for (int i = 0; i < thumbImage.length; ++i) {
                     thumbImage[i].setImageY(avatarTop + yoff + dp(21));
                 }
             } else {
-                messageTop = dp(39);
+                messageTop = dp(46);
             }
         }
 
