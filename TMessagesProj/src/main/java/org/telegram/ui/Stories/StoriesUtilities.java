@@ -278,6 +278,8 @@ public class StoriesUtilities {
             if (params.drawSegments) {
                 unreadPaint = getUnreadCirclePaint(avatarImage, params.isStoryCell);
                 unreadPaint.setAlpha((int) (0xFF * params.alpha));
+                    unreadPaint.setShader(null);
+                    unreadPaint.setColor((0x1D8CF8) | (((int) (0xFF * params.alpha)) << 24));
                 closeFriendsPaint = getCloseFriendsPaint(avatarImage);
                 closeFriendsPaint.setAlpha((int) (0xFF * params.alpha));
                 livePaint = getLivePaint(avatarImage);
@@ -328,6 +330,8 @@ public class StoriesUtilities {
             if (params.drawSegments) {
                 unreadPaint = getUnreadCirclePaint(avatarImage, params.isStoryCell);
                 unreadPaint.setAlpha((int) (0xFF * params.alpha));
+                    unreadPaint.setShader(null);
+                    unreadPaint.setColor((0x1D8CF8) | (((int) (0xFF * params.alpha)) << 24));
                 closeFriendsPaint = getCloseFriendsPaint(avatarImage);
                 closeFriendsPaint.setAlpha((int) (0xFF * params.alpha));
                 livePaint = getLivePaint(avatarImage);

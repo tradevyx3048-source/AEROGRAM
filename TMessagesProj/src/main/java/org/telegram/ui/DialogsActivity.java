@@ -3441,8 +3441,8 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 // a new drawable (also when the view is recreated after a theme switch made elsewhere): remember its tint, the
                 // theme hook only recolors when the color differs from the last one applied
                 logoDrawable.setColorFilter(lastLogoDrawableColor = getThemedColor(Theme.key_telegram_color_dialogsLogo), PorterDuff.Mode.MULTIPLY);
-                SpannableStringBuilder ssb = new SpannableStringBuilder(getString(R.string.AppName));
-                ssb.setSpan(new ImageSpan(logoDrawable), 0, ssb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                SpannableStringBuilder ssb = new SpannableStringBuilder(getString(R.string.MainTabsChats));
+                // iOS style: plain text title instead of logo image
                 actionBar.setTitle(ssb, statusDrawable);
                 updateStatus(UserConfig.getInstance(currentAccount).getCurrentUser(), false);
             }
@@ -5565,6 +5565,60 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         glassEngine.setPositionsMerger(new GlassPositionsMerger(Float.POSITIVE_INFINITY, dp(48)));
 
         ViewCompat.setOnApplyWindowInsetsListener(fragmentView, this::onApplyWindowInsets);
+        try {
+            org.telegram.ui.Components.GlassUi.TabBar glassBar = new org.telegram.ui.Components.GlassUi.TabBar(context);
+            glassBar.pills.listener = new org.telegram.ui.Components.GlassUi.Pills.Listener() {
+                @Override
+                public void onSelect(int index) {
+                    if (index == 0) {
+                        org.telegram.ui.Components.GlassUi.go(DialogsActivity.this, "org.telegram.ui.ContactsActivity");
+                    } else if (index == 1) {
+                        org.telegram.ui.Components.GlassUi.go(DialogsActivity.this, "org.telegram.ui.CallLogActivity");
+                    } else if (index == 3) {
+                        org.telegram.ui.Components.GlassUi.go(DialogsActivity.this, "org.telegram.ui.SettingsActivity");
+                    }
+                    if (index != 2) {
+                        glassBar.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                glassBar.pills.select(2);
+                            }
+                        }, 400);
+                    }
+                }
+            };
+            if (fragmentView != null) {
+                fragmentView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        org.telegram.ui.Components.GlassUi.padLists(fragmentView, 90);
+                    }
+                });
+            }
+            if (fragmentView instanceof android.widget.FrameLayout) {
+                ((android.widget.FrameLayout) fragmentView).addView(glassBar, new android.widget.FrameLayout.LayoutParams(-1, org.telegram.ui.Components.GlassUi.dp(80), android.view.Gravity.BOTTOM));
+            }
+            if (actionBar != null) {
+                actionBar.setBackgroundColor(0xFFE6EAF1);
+                org.telegram.ui.Components.GlassUi.roundBottom(actionBar, 26);
+            }
+        if (fragmentView != null) {
+                for (int glassI = 0; glassI < 6; glassI++) {
+                    fragmentView.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                if (filterTabsView != null) {
+                                    org.telegram.ui.Components.GlassUi.styleTabs(filterTabsView);
+                                }
+                            } catch (Throwable glassIgnore2) {
+                            }
+                        }
+                    }, 400 + glassI * 700);
+                }
+            }
+        } catch (Throwable glassIgnore) {
+        }
         return fragmentView;
     }
 
