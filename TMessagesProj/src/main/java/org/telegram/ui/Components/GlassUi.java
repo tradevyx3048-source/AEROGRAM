@@ -152,4 +152,40 @@ public class GlassUi {
             addView(search, lp);
         }
     }
+
+    public static void go(org.telegram.ui.ActionBar.BaseFragment from, String cls) {
+        try {
+            Class<?> c = Class.forName(cls);
+            Object o;
+            try {
+                o = c.getConstructor().newInstance();
+            } catch (NoSuchMethodException e) {
+                o = c.getConstructor(android.os.Bundle.class).newInstance((android.os.Bundle) null);
+            }
+            from.presentFragment((org.telegram.ui.ActionBar.BaseFragment) o);
+        } catch (Throwable ignore) {
+        }
+    }
+
+    public static void padLists(android.view.View v, int bottomDp) {
+        try {
+            if (v instanceof androidx.recyclerview.widget.RecyclerView) {
+                androidx.recyclerview.widget.RecyclerView rv = (androidx.recyclerview.widget.RecyclerView) v;
+                androidx.recyclerview.widget.RecyclerView.LayoutManager lm = rv.getLayoutManager();
+                if (lm instanceof androidx.recyclerview.widget.LinearLayoutManager
+                        && ((androidx.recyclerview.widget.LinearLayoutManager) lm).getOrientation() == androidx.recyclerview.widget.LinearLayoutManager.VERTICAL) {
+                    rv.setClipToPadding(false);
+                    rv.setPadding(rv.getPaddingLeft(), rv.getPaddingTop(), rv.getPaddingRight(), dp(bottomDp));
+                }
+                return;
+            }
+            if (v instanceof android.view.ViewGroup) {
+                android.view.ViewGroup vg = (android.view.ViewGroup) v;
+                for (int i = 0; i < vg.getChildCount(); i++) {
+                    padLists(vg.getChildAt(i), bottomDp);
+                }
+            }
+        } catch (Throwable ignore) {
+        }
+    }
 }

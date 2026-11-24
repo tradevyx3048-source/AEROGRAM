@@ -5567,6 +5567,34 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         ViewCompat.setOnApplyWindowInsetsListener(fragmentView, this::onApplyWindowInsets);
         try {
             org.telegram.ui.Components.GlassUi.TabBar glassBar = new org.telegram.ui.Components.GlassUi.TabBar(context);
+            glassBar.pills.listener = new org.telegram.ui.Components.GlassUi.Pills.Listener() {
+                @Override
+                public void onSelect(int index) {
+                    if (index == 0) {
+                        org.telegram.ui.Components.GlassUi.go(DialogsActivity.this, "org.telegram.ui.ContactsActivity");
+                    } else if (index == 1) {
+                        org.telegram.ui.Components.GlassUi.go(DialogsActivity.this, "org.telegram.ui.CallLogActivity");
+                    } else if (index == 3) {
+                        org.telegram.ui.Components.GlassUi.go(DialogsActivity.this, "org.telegram.ui.SettingsActivity");
+                    }
+                    if (index != 2) {
+                        glassBar.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                glassBar.pills.select(2);
+                            }
+                        }, 400);
+                    }
+                }
+            };
+            if (fragmentView != null) {
+                fragmentView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        org.telegram.ui.Components.GlassUi.padLists(fragmentView, 90);
+                    }
+                });
+            }
             if (fragmentView instanceof android.widget.FrameLayout) {
                 ((android.widget.FrameLayout) fragmentView).addView(glassBar, new android.widget.FrameLayout.LayoutParams(-1, org.telegram.ui.Components.GlassUi.dp(80), android.view.Gravity.BOTTOM));
             }
