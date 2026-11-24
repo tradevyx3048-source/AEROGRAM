@@ -96,6 +96,10 @@ public class GlassUi {
             paint();
         }
 
+        public TextView tab(int i) {
+            return (TextView) row.getChildAt(i);
+        }
+
         public void select(int i) {
             sel = i;
             paint();
@@ -105,7 +109,13 @@ public class GlassUi {
 
         private void paint() {
             for (int i = 0; i < row.getChildCount(); i++) {
-                ((TextView) row.getChildAt(i)).setTextColor(tint && i == sel ? BLUE : Color.BLACK);
+                TextView tv = (TextView) row.getChildAt(i);
+                int col = tint && i == sel ? BLUE : Color.BLACK;
+                tv.setTextColor(col);
+                try {
+                    tv.setCompoundDrawableTintList(android.content.res.ColorStateList.valueOf(col));
+                } catch (Throwable ignore) {
+                }
             }
         }
 
@@ -141,6 +151,25 @@ public class GlassUi {
             setGravity(Gravity.CENTER);
             setPadding(dp(14), 0, dp(14), dp(10));
             pills = new Pills(c, 36, true, "\u263A\nContacts", "\u260E\nCalls", "\u2709\nChats", "\u2699\nSettings");
+            pills.select(2);
+            String[][] ic = {{"msg_contacts"}, {"msg_calls"}, {"msg_discussion", "msg_chats", "msg_message"}, {"msg_settings"}};
+            String[] nm = {"Contacts", "Calls", "Chats", "Settings"};
+            for (int i = 0; i < 4; i++) {
+                try {
+                    TextView tv = pills.tab(i);
+                    int id = 0;
+                    for (String n : ic[i]) {
+                        id = c.getResources().getIdentifier(n, "drawable", c.getPackageName());
+                        if (id != 0) break;
+                    }
+                    if (id != 0) {
+                        tv.setText(nm[i]);
+                        tv.setCompoundDrawablePadding(dp(2));
+                        tv.setCompoundDrawablesWithIntrinsicBounds(0, id, 0, 0);
+                    }
+                } catch (Throwable ignore) {
+                }
+            }
             pills.select(2);
             addView(pills, new LayoutParams(0, dp(68), 1f));
             search = label(c, "\uD83D\uDD0D", 22, false);
