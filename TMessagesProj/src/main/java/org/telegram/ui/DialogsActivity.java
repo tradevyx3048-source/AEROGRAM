@@ -5600,6 +5600,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             }
             if (actionBar != null) {
                 actionBar.setBackgroundColor(0xFFE6EAF1);
+                org.telegram.ui.Components.GlassUi.roundBottom(actionBar, 26);
             }
         if (fragmentView != null) {
                 for (int glassI = 0; glassI < 6; glassI++) {

@@ -50,8 +50,7 @@ public class GlassUi {
             edit.setBackground(glass(22));
             edit.setElevation(dp(4));
             addView(edit, new LayoutParams(LayoutParams.WRAP_CONTENT, dp(44), Gravity.START | Gravity.CENTER_VERTICAL));
-            SpannableString s = new SpannableString("Chats \u2605");
-            s.setSpan(new ForegroundColorSpan(BLUE), 6, 7, 0);
+            SpannableString s = new SpannableString("Chats");
             title = label(c, s, 18, true);
             addView(title, new LayoutParams(LayoutParams.WRAP_CONTENT, dp(44), Gravity.CENTER));
             LinearLayout right = new LinearLayout(c);
@@ -193,6 +192,20 @@ public class GlassUi {
         try {
             v.setBackground(glass(26));
             v.setElevation(dp(6));
+        } catch (Throwable ignore) {
+        }
+    }
+
+    public static void roundBottom(final android.view.View v, final int radiusDp) {
+        try {
+            v.setOutlineProvider(new android.view.ViewOutlineProvider() {
+                @Override
+                public void getOutline(android.view.View view, android.graphics.Outline outline) {
+                    int r = dp(radiusDp);
+                    outline.setRoundRect(0, -r, view.getWidth(), view.getHeight(), r);
+                }
+            });
+            v.setClipToOutline(true);
         } catch (Throwable ignore) {
         }
     }
