@@ -1273,7 +1273,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
 
 
     // BADGE_SIZE = BADGE_TEXT_PADDING * 2 + BADGE_TEXT_MIN_WIDTH;
-    private static final float BADGE_SIZE = 20.666f;
+    private static final float BADGE_SIZE = 30f;
     private static final float BADGE_TEXT_PADDING = 6.333f;
     private static final float BADGE_TEXT_MIN_WIDTH = 8f;
     private static final float BADGE_GAP = 25 - BADGE_TEXT_MIN_WIDTH;

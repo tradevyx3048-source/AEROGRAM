@@ -5565,6 +5565,16 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         glassEngine.setPositionsMerger(new GlassPositionsMerger(Float.POSITIVE_INFINITY, dp(48)));
 
         ViewCompat.setOnApplyWindowInsetsListener(fragmentView, this::onApplyWindowInsets);
+        try {
+            org.telegram.ui.Components.GlassUi.TabBar glassBar = new org.telegram.ui.Components.GlassUi.TabBar(context);
+            if (fragmentView instanceof android.widget.FrameLayout) {
+                ((android.widget.FrameLayout) fragmentView).addView(glassBar, new android.widget.FrameLayout.LayoutParams(-1, org.telegram.ui.Components.GlassUi.dp(80), android.view.Gravity.BOTTOM));
+            }
+            if (actionBar != null) {
+                actionBar.setBackgroundColor(0xFFE6EAF1);
+            }
+        } catch (Throwable glassIgnore) {
+        }
         return fragmentView;
     }
 

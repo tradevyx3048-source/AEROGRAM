@@ -226,8 +226,8 @@ public class ThemeColors {
         defaultColors[key_actionBarDefaultArchivedSearch] = DEFAULT_BLACK_TEXT;
         defaultColors[key_actionBarDefaultArchivedSearchPlaceholder] = 0xff838c96;
 
-        defaultColors[key_chats_onlineCircle] = 0xff4bcb1c;
-        defaultColors[key_chats_unreadCounter] = TELEGRAM_COLOR;
+        defaultColors[key_chats_onlineCircle] = 0xff34c759;
+        defaultColors[key_chats_unreadCounter] = 0xff1d8cf8;
         defaultColors[key_chats_unreadCounterMuted] = 0xffBEC3C7;
         defaultColors[key_chats_unreadCounterText] = 0xffffffff;
         defaultColors[key_chats_archiveBackground] = TELEGRAM_COLOR;
@@ -238,7 +238,7 @@ public class ThemeColors {
         defaultColors[key_chats_nameArchived] = 0xff1a1d21;
         defaultColors[key_chats_secretName] = 0xff00a60e;
         defaultColors[key_chats_secretIcon] = 0xff19b126;
-        defaultColors[key_chats_pinnedIcon] = 0xff919294;
+        defaultColors[key_chats_pinnedIcon] = 0xffa9a9af;
         defaultColors[key_chats_message] = 0xff75787A;
         defaultColors[key_chats_messageArchived] = 0xff919191;
         defaultColors[key_chats_message_threeLines] = 0xff8e9091;
